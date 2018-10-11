@@ -1,0 +1,14 @@
+{
+  "name": "cordova.plugin.smsport",
+  "version": "0.0.1",
+  "description": "\"Plugin permettant de lire et d'envoyer un sms vers un port donné\"",
+  "cordova": {
+    "id": "cordova.plugin.smsport",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Dame Camara",
+  "license": "ISC"
+}

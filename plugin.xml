@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova.plugin.smsport" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>smsport</name>
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+        <engine name="cordova-android" version=">=5.0.0"/>
+    </engines>
+    <js-module name="smsport" src="www/smsport.js">
+        <clobbers target="cordova.plugins.smsport"/>
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="smsport">
+                <param name="android-package" value="cordova.plugin.smsport.smsport"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/smsport.java" target-dir="src/cordova/plugin/smsport/smsport"/>
+        <source-file src="src/android/RecepteurSMS.java" target-dir="src/cordova/plugin/smsport/smsport"/>
+
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <receiver android:name="cordova.plugin.smsport.RecepteurSMS" android:enabled="true" android:exported="true">
+                <intent-filter android:priority="10000">
+                    <action android:name="android.intent.action.DATA_SMS_RECEIVED" />
+                    <data android:scheme="sms" android:host="*" android:port="12001"/>
+                </intent-filter>
+            </receiver>
+        </config-file>
+
+        <config-file parent="/manifest" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.READ_SMS"/>
+            <uses-permission android:name="android.permission.RECEIVE_SMS" />
+            <uses-permission android:name="android.permission.SEND_SMS"/>
+        </config-file>
+
+    </platform>
+</plugin>
